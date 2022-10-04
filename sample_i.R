@@ -10,4 +10,6 @@ function (var , n = 100 , i = 100 , method = "IID") {
     
   }
 
+  return (samples)
+  
 }
