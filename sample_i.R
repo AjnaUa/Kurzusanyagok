@@ -1,4 +1,4 @@
-function (var , n = 100 , i = 100 , method = "IID") {
+sample_i <- function (var , n = 100 , i = 100 , method = "IID") {
   
   if (method == "IID") {
     
