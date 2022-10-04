@@ -12,6 +12,11 @@ sample_i <- function (var , n = 100 , i = 100 , method = "IID") {
     
   }
 
+  samples <- samples %>% 
+    mutate (rn = str_c ("element_" , 1:n)) %>% 
+    add_rownames (rn)
+  colnames (samples) <- str_c ("sample_" , 1:i)
+  
   return (samples)
   
 }
