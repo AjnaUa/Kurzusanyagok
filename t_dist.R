@@ -16,6 +16,8 @@ t_dist <- function (df) {
               label = paste ("skew = " , sk )) +
     annotate (geom = "text" , x = -0.15 , y = 0.1 , 
               label = paste ("kurt = " , ku )) +
+    labs (y = "probability",
+          title = "comparint DF of t distribution with standard normal distribution") +
     theme_classic()
   
 }
