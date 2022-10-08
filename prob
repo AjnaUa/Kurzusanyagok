@@ -39,9 +39,9 @@ t_dist <- function (df) {
   sk <- round (psych::describe (t)$skew, 1)
   ku <- round (psych::describe (t)$kurtosis, 1)
   
-  data <- data.frame (x = seq (-3 , 3 , 0.01))
+  data <- data.frame (t = seq (-3 , 3 , 0.01))
   
-  ggplot (data , aes (x = x)) +
+  ggplot (data , aes (x = t)) +
     stat_function (fun = dnorm , args = list (mean = 0 , sd = 1)) +
     stat_function (fun = dt , args = list (df = df), col = "blue") +
     annotate (geom = "text" , x = -0.15 , y = 0.2 , 
@@ -50,6 +50,9 @@ t_dist <- function (df) {
               label = paste ("skew = " , sk )) +
     annotate (geom = "text" , x = -0.15 , y = 0.1 , 
               label = paste ("kurt = " , ku )) +
+    labs (y = NULL ,
+          title = "Student's t-distribution" ,
+          subtitle = str_c ("with " , df , " degrees of freedom")) +
     theme_classic()
   
 }
