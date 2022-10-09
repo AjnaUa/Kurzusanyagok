@@ -24,7 +24,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu) {
     geom_vline(xintercept = z , lty = 2) +
     geom_hline(yintercept = p, col = "red") +
     annotate ("text" , label = str_c ("p = " , p) ,
-              x = -2 , y = p + 0.15) +
+              x = z , y = p + 0.15) +
     theme_classic()
   
   library (patchwork)
