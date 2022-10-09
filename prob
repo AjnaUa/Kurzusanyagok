@@ -17,7 +17,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu) {
     geom_vline(xintercept = z , lty = 2) +
     annotate ("text" , label = str_c ("z = " , z) ,
               x = z , y = 0.1) +
-    scale_y_continuous (limits = c (0 , 0.6)) +
+    scale_y_continuous (limits = c (0 , 1)) +
     theme_classic()
   g2 <- ggplot (dz , aes (x = variable , y = CDF)) +
     geom_path ()+
