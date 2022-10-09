@@ -8,7 +8,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu) {
   dz <- data.frame (variable = x , 
                     DF = fx,
                     CDF = Fx)
-  p <- round (pnorm (z , mean = mu , sd = sigma) , 2)
+  p <- round (pnorm (z , mean = mu , sd = sigma) , 3)
   
   library (ggplot2)
   g1 <- ggplot (dz , aes (x = variable , y = DF)) +
