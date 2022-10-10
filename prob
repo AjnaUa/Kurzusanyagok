@@ -57,12 +57,16 @@ t_dist <- function (df) {
   
 }
 
-F_dist <- function (df1 , df2) {
+F_dist <- function (alpha = 0.05 , df1 , df2 , F_stat = 0) {
+
+  F_critic <- qf (1 - alpha , df1 , df2)
+  x <- seq (0 , max (F_stat, F_critic + 2) , length.out = 200)
   
   ggplot (as.data.frame (x) , aes (x = x)) +
   geom_function (fun = df , args = list (df1 = df1 , df2 = df2), aes (color = "DF")) +
   geom_function (fun = pf , args = list (df1 = df1 , df2 = df2), aes (color = "CDF")) +
-  geom_vline (xintercept = qf (0.95 , df1 , df2)) +
+  geom_vline (xintercept = F_critic , color = "red") +
+  geom_vline (xintercept = F_stat , lty = 2) +
   labs (title = str_c ("F distribution with " , df1 , " and " , df2 , " degrees of freedom")) +
   theme_bw ()
   
