@@ -56,3 +56,25 @@ t_dist <- function (df) {
     theme_classic()
   
 }
+
+F_dist <- function (df1 , df2) {
+  
+  ggplot (as.data.frame (x) , aes (x = x)) +
+  geom_function (fun = df , args = list (df1 = df1 , df2 = df2), aes (color = "DF")) +
+  geom_function (fun = pf , args = list (df1 = df1 , df2 = df2), aes (color = "CDF")) +
+  geom_vline (xintercept = qf (0.95 , df1 , df2)) +
+  labs (title = str_c ("F distribution with " , df1 , " and " , df2 , " degrees of freedom")) +
+  theme_bw ()
+  
+}
+
+Chi2_dist <- function (df) {
+  
+  ggplot (as.data.frame (x) , aes (x = x)) +
+    geom_function (fun = dchisq , args = list (df = df), aes (color = "DF")) +
+    geom_function (fun = pchisq , args = list (df = df), aes (color = "CDF")) +
+    geom_vline (xintercept = qchisq (0.95 , df)) +
+    labs (title = str_c ("Chi2 distribution with " , df , " degrees of freedom")) +
+    theme_bw ()
+  
+}
