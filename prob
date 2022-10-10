@@ -60,7 +60,7 @@ t_dist <- function (df) {
 F_dist <- function (alpha = 0.05 , df1 , df2 , F_stat = 0) {
 
   F_critic <- qf (1 - alpha , df1 , df2)
-  x <- seq (0 , round (max (F_stat, F_critic + 2) , 1) , length.out = 200)
+  x <- seq (0 , round (max (F_stat, F_critic + 2) , 1) , by = 0.1)
   
   ggplot (as.data.frame (x) , aes (x = x)) +
   geom_function (fun = df , args = list (df1 = df1 , df2 = df2), aes (color = "DF")) +
