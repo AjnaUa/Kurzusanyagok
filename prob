@@ -84,8 +84,13 @@ Chi2_dist <- function (alpha = 0.05 , df , Chi2_stat = 0) {
   ggplot (as.data.frame (x) , aes (x = x)) +
     geom_function (fun = dchisq , args = list (df = df), aes (color = "DF")) +
     geom_function (fun = pchisq , args = list (df = df), aes (color = "CDF")) +
-    geom_vline (xintercept = Chi2_critic) +
-    labs (title = str_c ("Chi2 distribution with " , df , " degrees of freedom")) +
+    geom_vline (xintercept = Chi2_critic , color = "red") +
+    geom_vline (xintercept = Chi2_stat , lty = 2) +
+    labs (title = str_c ("Chi2 distribution with " , df , " degrees of freedom") ,
+          caption = "red line: critical value 
+                     dashed line: test statistic" ,
+          x = "Chi2" ,
+          y = NULL) +
     theme_bw ()
   
 }
