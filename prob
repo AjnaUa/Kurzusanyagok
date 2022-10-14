@@ -67,7 +67,11 @@ F_dist <- function (alpha = 0.05 , df1 , df2 , F_stat = 0) {
   geom_function (fun = pf , args = list (df1 = df1 , df2 = df2), aes (color = "CDF")) +
   geom_vline (xintercept = F_critic , color = "red") +
   geom_vline (xintercept = F_stat , lty = 2) +
-  labs (title = str_c ("F distribution with " , df1 , " and " , df2 , " degrees of freedom")) +
+  labs (title = str_c ("F distribution with " , df1 , " and " , df2 , " degrees of freedom") ,
+        caption = "red line: critical value 
+                   dashed line: test statistic" ,
+        x = "F" ,
+        y = NULL) +
   theme_bw ()
   
 }
