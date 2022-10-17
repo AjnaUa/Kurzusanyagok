@@ -127,7 +127,7 @@ Chi2_dist <- function (alpha = 0.05 , df , Chi2_stat = 0) {
   g1 <- 
   ggplot (data.frame (x = x , y = Chi) , aes (x = x , y = y)) +
     geom_path () +
-    geom_area (aes (x = ifelse (x > Chi2_critic , x , NA)) , fill = "red") +
+    geom_area (aes (x = ifelse (x >= Chi2_critic , x , NA)) , fill = "red") +
     geom_vline (xintercept = Chi2_critic , color = "red") +
     annotate ("text" , label = str_c ("Chi2_" , 1-alpha , "( " , df , " ) = " ,
                                       round (Chi2_critic , 2)) ,
