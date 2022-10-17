@@ -1,3 +1,9 @@
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load ("latex2exp" , "tidyverse" , "patchwork")
+library (latex2exp)
+library (tidyverse)
+library (patchwork)
+
 norm_function <- function (mu = 0 , sigma = 1 , z = mu , tail = "left") {
   
   # for x ~ N(mu , sigma) calculates right, left two-sided probabilities at test statistic (z)
@@ -5,12 +11,6 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu , tail = "left") {
   # below the computed test statistic for left tail tests
   # For two-tailed tests, the probability that lies above the positive value of the computed test statistic plus the
   # probability that lies below the negative value of the computed test statistic.
-  
-  if (!require("pacman")) install.packages("pacman")
-  pacman::p_load ("latex2exp" , "tidyverse" , "patchwork")
-  library ("latex2exp")
-  library ("tidyverse")
-  
   
   dif <- abs (mu - z)
   # normal distribution DF and CDF in the area of 3sig from the mean
