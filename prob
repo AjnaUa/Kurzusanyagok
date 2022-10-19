@@ -245,10 +245,10 @@ t_stat_draw <- function ( test , alpha = 0.05 ) {
                  color = "black" ,
                  linetype = "dashed" ) +
     annotate ("text" , label = str_c ("mean = " , round (mean , 2)) ,
-              x = case_when (mean > max ~ max ,
-                             mean < min ~ min ,
+              x = case_when (mean > max ~ max + SE/3,
+                             mean < min ~ -Inf ,
                              TRUE ~ mean), 
-              y = Inf, hjust = 1, vjust = 1 , col = "blue") +
+              y = Inf, hjust = 0, vjust = 1 , col = "blue") +
     scale_x_continuous ( breaks = round (seq ( min , max , SE ) , 1) ,
                          limits = c ( min - SE , max + SE ) ) +
     labs ( y = NULL , 
@@ -265,8 +265,8 @@ t_stat_draw <- function ( test , alpha = 0.05 ) {
                  color = "black" ,
                  linetype = "dashed" ) +
     annotate ("text" , label = str_c ("t = " , t) ,
-              x = case_when (t > 3.5 ~ 3 ,
-                             t < -3.5 ~ -3 ,
+              x = case_when (t >  3.5 ~  4 ,
+                             t < -3.5 ~ -4 ,
                              TRUE ~ t), 
               y = Inf, hjust = 1, vjust = 1 , col = "blue") +
     scale_x_continuous ( breaks = seq ( -3 , +3 , 1 ) ,
@@ -320,8 +320,8 @@ t_stat_draw <- function ( test , alpha = 0.05 ) {
                                           type == "greater" ~  "1 - p = " ) , 
                               round (pt (q = t , df = df) , 3)) ,
               y = Inf, 
-              x = case_when (t > 3.5 ~ 3 ,
-                             t < -3.5 ~ -3 ,
+              x = case_when (t >  3.5 ~  4 ,
+                             t < -3.5 ~ -4 ,
                              TRUE ~ t), 
               col = "blue" , hjust = 1 , vjust = 1) +
     scale_x_continuous ( breaks = seq ( -3 , +3 , 1 ) ,
