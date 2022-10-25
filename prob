@@ -13,7 +13,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu , tail = "left") {
   # probability that lies below the negative value of the computed test statistic.
   
   dif <- abs (mu - z)
-  # normal distribution DF and CDF in the area of 3sig from the mean
+  # normal distribution PDF and CDF in the area of 3 sigma from the mean
   x <- seq (mu - 3 * sigma , mu + 3 * sigma , length.out = 100)
   fx <- dnorm (x , mu , sigma)
   Fx <- pnorm (x , mu , sigma)
@@ -22,7 +22,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu , tail = "left") {
   x_z  <-  ifelse (!between (x , mu - dif , mu + dif) , 
                    x , NA)
   dz <- data.frame (variable = x , 
-                    DF = fx,
+                    PDF = fx,
                     CDF = Fx ,
                     critic_areal <- x_zl ,
                     critic_arear <- x_zr ,
@@ -30,7 +30,7 @@ norm_function <- function (mu = 0 , sigma = 1 , z = mu , tail = "left") {
   
   p <- round (pnorm (z , mean = mu , sd = sigma) , 3)
   
-  g1 <- ggplot (dz , aes (x = variable , y = DF)) +
+  g1 <- ggplot (dz , aes (x = variable , y = PDF)) +
     geom_path () +
     geom_vline (xintercept = z , lty = 2) +
     scale_y_continuous (expand = c (0 ,0)) +
@@ -133,7 +133,7 @@ Chi2_dist <- function (alpha = 0.05 , df , Chi2_stat = 0) {
                                       round (Chi2_critic , 2)) ,
               x = Chi2_critic , y = 0.1) +
     geom_vline (xintercept = Chi2_stat , lty = 2) +
-    labs (title = "Density function" ,
+    labs (title = "Probability density function (PDF)" ,
           x = NULL,
           y = NULL) +
     theme_classic () +
@@ -147,7 +147,7 @@ Chi2_dist <- function (alpha = 0.05 , df , Chi2_stat = 0) {
     annotate ("text" , label = str_c ("1 - p = " , round (p , 3) , 
                                       "\n p = " , round (1 - p , 3)) ,
               x = Chi2_stat , y = p - 0.1) +
-    labs (title = "Cummulative distribution function" ,
+    labs (title = "Cummulative distribution function (CDF)" ,
           x = "Chi2",
           y = NULL) +
     theme_bw ()
@@ -177,7 +177,7 @@ F_dist <- function (alpha = 0.05 , df1 , df2 , F_stat = 0) {
                                       round (F_critic , 2)) ,
               x = F_critic , y = 0.5) +
     geom_vline (xintercept = F_stat , lty = 2) +
-    labs (title = "Density function" ,
+    labs (title = "Probability density function (PDF)" ,
           x = NULL ,
           y = NULL) +
     theme_classic () +
@@ -192,7 +192,7 @@ F_dist <- function (alpha = 0.05 , df1 , df2 , F_stat = 0) {
     annotate ("text" , label = str_c ("1 - p = " , round (p , 3) , 
                                       "\n p = " , round (1 - p , 3)) ,
               x = F_stat , y = p - 0.1 , hjust = "right") +
-    labs (title = "Cumulative distributioin function" ,
+    labs (title = "Cumulative distributioin function (CDF)" ,
           x = "F" ,
           y = NULL) +
     theme_bw ()
